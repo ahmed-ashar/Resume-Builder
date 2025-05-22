@@ -34,12 +34,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 
 
-// // Server Uploads Folder
-// app.use(
-//   "/uploads",
-//   express.static(path.join(__dirname,"uploads"),{
-//     setHeaders:(res,path)=>{
-//       res.set("Access-Control-Allow-Origin","http://localhost:5173")
-//     }
-//   })
-// )
