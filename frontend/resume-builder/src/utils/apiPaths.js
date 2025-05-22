@@ -1,4 +1,4 @@
-export const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+export const BASE_URL = process.env.VITE_API_BASE_URL;
 
 // utlis/apiPaths.js
 export const API_PathS = {
