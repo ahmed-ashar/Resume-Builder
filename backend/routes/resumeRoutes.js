@@ -1,21 +1,23 @@
-const express = require("express");
-const {
-  createResume,
-  getUserResume,
-  getResumeById,
-  updateResume,
-  deleteResume,
-} = require("../controllers/resumeController");
-const { protect } = require("../middlewares/authMiddleware");
-const { uploadResumeImages } = require("../controllers/uploadImages");
+const express = require('express');
+const { protect } = require('../middlewares/authMiddleware');
+const upload = require('../middlewares/uploadMiddleware'); // multer setup
+const { uploadResumeImages, createResume, getUserResume, getResumeById, updateResume, deleteResume } = require('../controllers/resumeController');
 
 const router = express.Router();
 
-router.post("/", protect, createResume); // Create Resume
-router.get("/", protect, getUserResume); // Get Resume
-router.get("/:id", protect, getResumeById); // Get Resume By ID
-router.put("/:id", protect, updateResume); // Update Resume
-router.post("/:id/upload-images", protect, uploadResumeImages); // <-- FIXED: POST not PUT
-router.delete("/:id", protect, deleteResume); // Delete Resume
+router.post('/', protect, createResume);
+router.get('/', protect, getUserResume);
+router.get('/:id', protect, getResumeById);
+router.put('/:id', protect, updateResume);
+
+// multer middleware handles file uploads before controller runs
+router.post(
+  '/:id/upload-images',
+  protect,
+  upload.fields([{ name: 'thumbnail' }, { name: 'profileImage' }]),
+  uploadResumeImages
+);
+
+router.delete('/:id', protect, deleteResume);
 
 module.exports = router;
