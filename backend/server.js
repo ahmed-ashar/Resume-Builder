@@ -8,10 +8,24 @@ const resumeRoute = require('./routes/resumeRoutes');
 
 const app = express();
 
-// Middleware to handle CORS
+// Allow both deployed frontend and localhost for development
+const allowedOrigins = [
+  'https://resume-x-frontend.vercel.app',
+  'http://localhost:5173'
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "*",
+    origin: function (origin, callback) {
+      // allow requests with no origin (like mobile apps, curl, etc.)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
@@ -29,8 +43,10 @@ app.use("/api/resume", resumeRoute);
 
 // (Removed uploads folder serving - not needed with Cloudinary)
 
-// Start Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+// Start Server (for local dev)
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+}
 
-
+module.exports = app;
