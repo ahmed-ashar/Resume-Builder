@@ -15,7 +15,7 @@ const CreateResumeForm = () => {
     e.preventDefault();
 
     if (!title) {
-      setError("Please resume title");
+      setError("Please enter resume title");
       return;
     }
 
