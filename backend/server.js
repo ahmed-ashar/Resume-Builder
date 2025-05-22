@@ -7,6 +7,9 @@ const authRoute = require('./routes/authRoutes');
 const resumeRoute = require('./routes/resumeRoutes');
 
 const app = express();
+console.log(process.env.CLIENT_URL);
+console.log(process.env.MONGO_URI);
+
 
 // Middleware to handle CORS
 app.use(
