@@ -80,7 +80,7 @@ npm install
     PORT=8000
     MONGO_URI=your_mongodb_connection_string
     JWT_SECRET=your_jwt_secret
-    CLIENT_URL=http://localhost:5173
+    CLIENT_URL=
     ```
 
 - Start the backend server:
@@ -106,7 +106,7 @@ npm install
     npm run dev
     ```
 
-- The app will be available at [http://localhost:5173](http://localhost:5173)
+- The app will be available at []()
 
 ---
 
@@ -155,7 +155,7 @@ npm install
 PORT=8000
 MONGO_URI=mongodb://localhost:27017/resume-builder
 JWT_SECRET=your_jwt_secret
-CLIENT_URL=http://localhost:5173
+CLIENT_URL=
 ```
 
 ---
