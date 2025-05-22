@@ -114,7 +114,6 @@ const TemplateThree = ({ resumeData, colorPalatte, containerWidth }) => {
           className="col-span-4 py-10"
           style={{ backgroundColor: themeColors[0] }}
         >
-
           <div className="my-6 mx-6">
             <div className="flex flex-col gap-4">
               {resumeData.contactInfo.linkedin && (

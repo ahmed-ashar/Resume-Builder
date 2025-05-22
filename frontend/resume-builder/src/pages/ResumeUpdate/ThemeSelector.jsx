@@ -130,4 +130,3 @@ const ColorPalatte = ({ colors, isSelected, onSelect }) => {
     </div>
   );
 };
-

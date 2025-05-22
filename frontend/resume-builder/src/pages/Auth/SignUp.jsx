@@ -47,10 +47,10 @@ const SignUp = ({ setCurrentPage }) => {
       // Upload image if present
       if (profilePic) {
         console.log("Uploading Image:", profilePic);
-        
+
         const imgUploadRes = await uploadImage(profilePic);
         console.log("Image Upload Response:", imgUploadRes);
-        
+
         profileImageUrl = imgUploadRes.imageUrl || "";
       }
 

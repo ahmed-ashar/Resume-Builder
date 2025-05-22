@@ -78,7 +78,9 @@ const LandingPage = () => {
             </div>
 
             <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
-              <h3 className="text-lg font-semibold mb-3">Beautiful Templates</h3>
+              <h3 className="text-lg font-semibold mb-3">
+                Beautiful Templates
+              </h3>
               <p className="text-gray-600">
                 Choose from modern, professional templates that are easy to
                 customize.

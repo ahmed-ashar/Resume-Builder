@@ -166,4 +166,3 @@ export const DUMMY_RESUME_DATA = {
     "Traveling",
   ],
 };
-

@@ -3,7 +3,7 @@ import { LuPlus, LuTrash2 } from "react-icons/lu";
 import Input from "../../../components/Inputs/Input";
 
 const ProjectsDetailForm = ({
-    projectInfo,
+  projectInfo,
   updateArrayItem,
   addArrayItem,
   removeArrayItem,

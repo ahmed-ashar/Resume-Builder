@@ -95,39 +95,38 @@ const TemplateTwo = ({ resumeData, colorPalatte, containerWidth }) => {
                   iconBG={themeColors[2]}
                   value={resumeData.contactInfo.location}
                 />
+              </div>
+              <div className="col-span-6 flex flex-col gap-5 mt-2">
+                <ContactInfo
+                  icon={<LuMail />}
+                  iconBG={themeColors[2]}
+                  value={resumeData.contactInfo.email}
+                />
 
-                  </div>
-                <div className="col-span-6 flex flex-col gap-5 mt-2">
+                <ContactInfo
+                  icon={<LuPhone />}
+                  iconBG={themeColors[2]}
+                  value={resumeData.contactInfo.phone}
+                />
+              </div>
+
+              <div className="col-span-6">
+                {resumeData.contactInfo.linkedin && (
                   <ContactInfo
-                    icon={<LuMail />}
+                    icon={<RiLinkedinLine />}
                     iconBG={themeColors[2]}
-                    value={resumeData.contactInfo.email}
+                    value={resumeData.contactInfo.linkedin}
                   />
+                )}
+              </div>
 
-                  <ContactInfo
-                    icon={<LuPhone />}
-                    iconBG={themeColors[2]}
-                    value={resumeData.contactInfo.phone}
-                  />
-                </div>
-
-                <div className="col-span-6">
-                  {resumeData.contactInfo.linkedin && (
-                    <ContactInfo
-                      icon={<RiLinkedinLine />}
-                      iconBG={themeColors[2]}
-                      value={resumeData.contactInfo.linkedin}
-                    />
-                  )}
-                </div>
-
-                <div className="col-span-6">
-                  <ContactInfo
-                    icon={<LuRss />}
-                    iconBG={themeColors[2]}
-                    value={resumeData.contactInfo.website}
-                  />
-                </div>
+              <div className="col-span-6">
+                <ContactInfo
+                  icon={<LuRss />}
+                  iconBG={themeColors[2]}
+                  value={resumeData.contactInfo.website}
+                />
+              </div>
             </div>
           </div>
         </div>

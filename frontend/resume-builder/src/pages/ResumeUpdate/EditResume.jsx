@@ -480,55 +480,59 @@ const EditResume = () => {
 
   // Upload thumbnail and resume profile img
   const uploadResumeImages = async () => {
-  try {
-    setIsLoading(true);
+    try {
+      setIsLoading(true);
 
-    fixTailwindColors(resumeRef.current);
-    const imageDataUrl = await captureElementAsImage(resumeRef.current);
+      fixTailwindColors(resumeRef.current);
+      const imageDataUrl = await captureElementAsImage(resumeRef.current);
 
-    // Convert base64 to File
-    const thumbnailFile = dataURLtoFile(
-      imageDataUrl,
-      `resume-${resumeId}.png`
-    );
+      // Convert base64 to File
+      const thumbnailFile = dataURLtoFile(
+        imageDataUrl,
+        `resume-${resumeId}.png`
+      );
 
-    const profileImageFile = resumeData?.profileInfo?.profileImg || null;
+      const profileImageFile = resumeData?.profileInfo?.profileImg || null;
 
-    const formData = new FormData();
-    if (profileImageFile) formData.append("profileImage", profileImageFile);
-    if (thumbnailFile) formData.append("thumbnail", thumbnailFile);
+      const formData = new FormData();
+      if (profileImageFile) formData.append("profileImage", profileImageFile);
+      if (thumbnailFile) formData.append("thumbnail", thumbnailFile);
 
-    // Debug: log FormData keys
-    for (let pair of formData.entries()) {
-      console.log("FormData:", pair[0], pair[1]);
+      // Debug: log FormData keys
+      for (let pair of formData.entries()) {
+        console.log("FormData:", pair[0], pair[1]);
+      }
+
+      const uploadResponse = await axiosInstance.post(
+        API_PathS.RESUME.UPLOAD_IMAGES(resumeId),
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+
+      const { thumbnailLink, profilePreviewUrl } = uploadResponse.data;
+
+      // Call the second API to update other resume data
+      await uploadResumeDetails(thumbnailLink, profilePreviewUrl);
+
+      toast.success("Resume Updated Successfully!");
+      navigate("/dashboard");
+    } catch (error) {
+      // Show backend error message if available
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
+        console.error("Backend error:", error.response.data.message);
+      } else {
+        toast.error("Failed to upload Images");
+        console.error("Error Uploading Images:", error);
+      }
+    } finally {
+      setIsLoading(false);
     }
-
-    const uploadResponse = await axiosInstance.post(
-      API_PathS.RESUME.UPLOAD_IMAGES(resumeId),
-      formData,
-      { headers: { "Content-Type": "multipart/form-data" } }
-    );
-
-    const { thumbnailLink, profilePreviewUrl } = uploadResponse.data;
-
-    // Call the second API to update other resume data
-    await uploadResumeDetails(thumbnailLink, profilePreviewUrl);
-
-    toast.success("Resume Updated Successfully!");
-    navigate("/dashboard");
-  } catch (error) {
-    // Show backend error message if available
-    if (error.response && error.response.data && error.response.data.message) {
-      toast.error(error.response.data.message);
-      console.error("Backend error:", error.response.data.message);
-    } else {
-      toast.error("Failed to upload Images");
-      console.error("Error Uploading Images:", error);
-    }
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   const uploadResumeDetails = async (thumbnailLink, profilePreviewUrl) => {
     try {

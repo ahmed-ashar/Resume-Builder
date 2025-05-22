@@ -5,7 +5,7 @@ const {
   getUserProfile,
 } = require("../controllers/authController");
 const { protect } = require("../middlewares/authMiddleware");
-const upload = require('../middlewares/uploadMiddleware');
+const upload = require("../middlewares/uploadMiddleware");
 
 const router = express.Router();
 
@@ -23,7 +23,9 @@ router.post("/upload-image", upload.single("image"), (req, res) => {
     res.status(200).json({ imageUrl: req.file.path });
   } catch (error) {
     console.error("Upload error:", error);
-    res.status(500).json({ message: "Failed to upload image", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to upload image", error: error.message });
   }
 });
 
