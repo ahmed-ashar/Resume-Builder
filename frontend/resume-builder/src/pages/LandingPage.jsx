@@ -5,7 +5,7 @@ import SignUp from "./Auth/SignUp";
 import Modal from "../components/Modal";
 import { UserContext } from "../context/userContext";
 import ProfileInfoCard from "../components/Cards/ProfileInfoCard";
-import heroImage from "../assets/hero-image.png"; // Replace with your image path
+import heroImage from "../assets/hero-image.jpg"; // Replace with your image path
 
 const LandingPage = () => {
   const { user } = useContext(UserContext);
