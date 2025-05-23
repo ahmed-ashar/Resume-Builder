@@ -5,6 +5,7 @@ import SignUp from "./Auth/SignUp";
 import Modal from "../components/Modal";
 import { UserContext } from "../context/userContext";
 import ProfileInfoCard from "../components/Cards/ProfileInfoCard";
+import heroImage from "../assets/hero-image.png"; // Replace with your image path
 
 const LandingPage = () => {
   const { user } = useContext(UserContext);
@@ -60,7 +61,7 @@ const LandingPage = () => {
           </div>
           <div className="w-full md:w-1/2">
             {/* Add a valid image URL or remove this */}
-            {/* <img src="/path/to/hero-image.png" alt="Hero Image" className="w-full rounded-lg" /> */}
+            <img src={heroImage} alt="Hero Image" className="w-full rounded-lg" />
           </div>
         </div>
 
